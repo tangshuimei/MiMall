@@ -1,0 +1,1 @@
+// 数据存储工具箱，设置一些sessionStorage、localStorage、cookie存值取值的规范
