@@ -16,7 +16,7 @@ export default {
     HelloWorld
   },
   mounted () {
-    let url = 'https://www.imooc.com/activity/servicetime';
+    let url = '/api/activity/servicetime';
     jsonp(url,()=>{
 
     }) 
