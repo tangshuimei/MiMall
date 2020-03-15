@@ -1,4 +1,3 @@
-// 商品列表页
 <template>
     <div>
 

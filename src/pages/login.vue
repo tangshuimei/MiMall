@@ -1,7 +1,6 @@
-// 登录页面
 <template>
     <div>
-
+        login
     </div>
 </template>
 <script>

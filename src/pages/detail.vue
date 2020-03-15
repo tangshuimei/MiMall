@@ -1,7 +1,6 @@
-// 商品详情页
 <template>
     <div>
-
+        detail
     </div>
 </template>
 <script>

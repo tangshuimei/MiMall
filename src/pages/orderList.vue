@@ -1,7 +1,6 @@
-// 订单详情页
 <template>
     <div>
-
+        orderlist
     </div>
 </template>
 <script>
