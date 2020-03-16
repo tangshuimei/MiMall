@@ -1,10 +1,36 @@
 import Vue from 'vue'
-import App from './App.vue'
 import router from './router'
+import axios from 'axios'
+import VueAxios from 'vue-axios' //把axios绑定到vue实例中，方便用this去调用，这样就不需要重复引入了
+import App from './App.vue'
 
-Vue.config.productionTip = false
+// axios.defaults.baseURL设置：根据前端的跨域方式做调整
+axios.defaults.baseURL = '/api'; // 接口代理的写法
+axios.defaults.timeout = 8000;
 
-new Vue({
+// 接口错误拦截
+axios.interceptors.response.use(function(response){
+  let res = response.data;
+  if(res.status == 0){
+    return res.data
+  }
+  else if(res.status == 10){
+    // 登录拦截
+    // 使用window.location.href跳的原因是，在main.js中使用路由是没用的，路由是挂载在路由实例中，在页面中才能使用this.$route.push，这里的this不是指向vue实例
+    window.location.href = '/#/login'
+  }
+  else{
+    alert(res.msg)
+  }
+},function(error){
+  console.log(error)
+})
+
+
+Vue.use(VueAxios,axios) 
+Vue.config.productionTip = false //生产环境的提示
+
+new Vue({ 
   router,
   render: h => h(App),
 }).$mount('#app')
