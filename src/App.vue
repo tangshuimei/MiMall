@@ -6,14 +6,14 @@
 </template>
 
 <script>
-
+import storage from './storage'
 export default {
   name: 'App',
   components: {
    
   },
   mounted () {
-    
+    storage.setItem('level',{h1: {p: 'txt'}})
   },
 }
 </script>
