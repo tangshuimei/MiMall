@@ -2,12 +2,11 @@ import Vue from 'vue'
 import router from './router'
 import axios from 'axios'
 import VueAxios from 'vue-axios' //把axios绑定到vue实例中，方便用this去调用，这样就不需要重复引入了
-import env from './env'
+
 import App from './App.vue'
 
 // axios.defaults.baseURL设置：根据前端的跨域方式做调整
-console.log(env.baseURL)
-axios.defaults.baseURL = env.baseURL; // 接口代理的写法
+// axios.defaults.baseURL = env.baseURL; // 接口代理的写法
 axios.defaults.timeout = 8000;
 
 // 接口错误拦截

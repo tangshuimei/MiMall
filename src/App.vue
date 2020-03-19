@@ -6,14 +6,21 @@
 </template>
 
 <script>
-import storage from './storage'
 export default {
   name: 'App',
+  data(){
+    return {
+      res: {}
+    }
+  },
   components: {
    
   },
   mounted () {
-    storage.setItem('level',{h1: {p: 'txt'}})
+    // 本地加载请求静态json文件的形式
+    this.axios.get('/mock/user/login.json',(res)=>{
+      this.res = res
+    })
   },
 }
 </script>
