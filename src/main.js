@@ -6,15 +6,22 @@ import VueAxios from 'vue-axios' //把axios绑定到vue实例中，方便用this
 import App from './App.vue'
 
 //这是mock的开关，接口开发完成，前后端联调上线就不需要了
-const mock = true; 
+const mock = false; 
 if(mock){
   require('./mock/api')
 }
 
 // axios.defaults.baseURL设置：根据前端的跨域方式做调整
-axios.defaults.baseURL = '/api'; // 接口代理的写法
+  // 1.接口代理：
+    // axios.defaults.baseURL = '/api';
+  // 2.CORS和jsonp跨域：
+    // import env from './env'
+    // axios.defaults.baseURL = env.baseURL; 
+  // 3.easy-mock平台
+    axios.defaults.baseURL = ' https://www.easy-mock.com/mock/5e742859c22f1e7cecdc3a8d/mimall';
+  // 4.mockjs：
+    // axios.defaults.baseURL = '/api';
 axios.defaults.timeout = 8000;
-// axios.defaults.baseURL = env.baseURL; // 接口代理的写法
 
 // 接口错误拦截
 axios.interceptors.response.use(function(response){
