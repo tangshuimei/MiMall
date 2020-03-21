@@ -24,7 +24,15 @@
                     <div class="item-menu">
                         <span>小米手机</span>
                         <div class="children">
-
+                            <div class="container">
+                                <div class="item-children">
+                                    <div class="img">
+                                        <img src="/imgs/pro1.png" alt="">
+                                    </div>
+                                    <p>小米CC9</p>
+                                    <p class="price">￥1779.00元</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="item-menu">
@@ -87,7 +95,7 @@
         .nav-header{
             position: relative;
             left: 0;
-            right: 0;
+            top: 0;
             .container{
                 display: flex;
                 align-items: center;
@@ -144,8 +152,52 @@
                         .children{
                             position: absolute;
                             left: 0;
-                            right: 0;
-                            width: 100%;
+                            top: 100%;
+                            .container{
+                                position: relative;
+                                left: 0;
+                                top: 0;
+                                height: auto;
+                                border-top: 1px solid #dddddd;
+                                background-color: #ffffff;
+                                .item-children{
+                                    position: relative;
+                                    left: 0;
+                                    top: 0;
+                                    display: inline-block;
+                                    width: 200px;
+                                    padding-top: 20px;
+                                    text-align: center;
+                                    .img{
+                                        width: 100%;
+                                        img{
+                                            display: block;
+                                            width: 100%;
+                                        }
+                                        p{
+                                            font-weight: bold;
+                                        }
+                                        .price{
+                                            color: #FF6600;
+                                        }
+                                    }
+                                    p{
+                                        line-height: 1em;
+                                        margin-top: 10px;
+                                    }
+                                    .price{
+                                        color: #FF6600;
+                                    }
+                                    &:after{
+                                        content: '';
+                                        position: absolute;
+                                        right: 0;
+                                        top: 20px;
+                                        height: 100px;
+                                        border-right: 1px solid #ddd;
+                                    }
+                                }
+                            }
                         }
                     }
                 }
