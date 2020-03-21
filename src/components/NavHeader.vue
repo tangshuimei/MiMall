@@ -45,7 +45,8 @@
                     </div>
                 </div>
                 <div class="header-search">
-
+                    <input type="text">
+                    <button></button>
                 </div>
 
             </div>
@@ -135,10 +136,10 @@
                 }
                 .header-menu{
                     display: inline-block;
-                    width: 200px;
                     padding-left: 209px;
                     .item-menu{
                         display: inline-block;
+                        margin-right: 20px;
                         color: #333333;
                         font-size: 16px;
                         font-weight: bold;
@@ -199,6 +200,28 @@
                                 }
                             }
                         }
+                    }
+                }
+                .header-search{
+                    input{
+                        display: inline-block;
+                        width: 245px;
+                        height: 50px;
+                        padding: 0 10px;
+                        border: 1px solid #ddd;
+                        border-right: 0;
+                        vertical-align: middle;
+                        box-sizing: border-box;
+                    }
+                    button{
+                        display: inline-block;
+                        width: 50px;
+                        height: 50px;
+                        background: url('/imgs/icon-search.png') no-repeat center;
+                        background-size: 20px;
+                        border: 1px solid #ddd;
+                        vertical-align: middle;
+                        
                     }
                 }
             }
