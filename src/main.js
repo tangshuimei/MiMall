@@ -13,12 +13,12 @@ if(mock){
 
 // axios.defaults.baseURL设置：根据前端的跨域方式做调整
   // 1.接口代理：
-    // axios.defaults.baseURL = '/api';
+    axios.defaults.baseURL = '/api';
   // 2.CORS和jsonp跨域：
     // import env from './env'
     // axios.defaults.baseURL = env.baseURL; 
   // 3.easy-mock平台
-    axios.defaults.baseURL = ' https://www.easy-mock.com/mock/5e742859c22f1e7cecdc3a8d/mimall';
+    // axios.defaults.baseURL = ' https://www.easy-mock.com/mock/5e742859c22f1e7cecdc3a8d/mimall';
   // 4.mockjs：
     // axios.defaults.baseURL = '/api';
 axios.defaults.timeout = 8000;
