@@ -37,7 +37,10 @@
                     </div>
                 </div>
                 <div class="header-search">
-
+                    <div class="wrapper">
+                        <input type="text" name="keyword">
+                        <a href="javascript:;"></a>
+                    </div>
                 </div>
 
             </div>
@@ -53,6 +56,8 @@
 </script>
 <style lang="scss">
     @import './../assets/scss/base.scss';
+    @import './../assets/scss/mixin.scss';
+
     .header{
         .nav-topbar{
             height: 39px;
@@ -60,9 +65,7 @@
             background-color: #333333;
             color: #B0B0B0;
             .container{
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
+                @include flex();
                 a{
                     display: inline-block;
                     color: #B0B0B0;
@@ -74,24 +77,15 @@
                     text-align: center;
                     color: #fff;
                     .icon-cart{
-                        display: inline-block;
-                        width: 16px;
-                        height: 12px;
                         margin-right: 4px;
-                        background: url('/imgs/icon-cart-checked.png') no-repeat center;
-                        background-size: contain;
+                        @include bgImg(16px,12px,'/imgs/icon-cart-checked.png');
                     }
                 }
             }
         }
         .nav-header{
-            position: relative;
-            left: 0;
-            right: 0;
             .container{
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
+                @include flex();
                 height: 112px;
                 .header-logo{
                     display: inline-block;
@@ -104,20 +98,12 @@
                         height: 55px;
                         &:before{
                             content: " ";
-                            display: inline-block;
-                            width: 55px;
-                            height: 55px;
-                            background: url('/imgs/mi-logo.png') no-repeat center;
-                            background-size: 55px;
+                            @include bgImg(55px,55px,'/imgs/mi-logo.png',55px);
                             transition: margin .2s;
                         }
                         &:after{
                             content: " ";
-                            display: inline-block;
-                            width: 55px;
-                            height: 55px;
-                            background: url('/imgs/home-logo.png') no-repeat center;
-                            background-size: 55px;
+                            @include bgImg(55px,55px,'/imgs/home-logo.png',55px);
                         }
                         &:hover::before{
                             margin-left: -55px;
@@ -127,10 +113,10 @@
                 }
                 .header-menu{
                     display: inline-block;
-                    width: 200px;
                     padding-left: 209px;
                     .item-menu{
                         display: inline-block;
+                        margin-right: 20px;
                         color: #333333;
                         font-size: 16px;
                         font-weight: bold;
@@ -142,10 +128,25 @@
                             }
                         }
                         .children{
-                            position: absolute;
-                            left: 0;
-                            right: 0;
-                            width: 100%;
+                        }
+                    }
+                }
+                .header-search{
+                    width: 319px;
+                    .wrapper{
+                        display: flex;
+                        align-items: center;
+                        height: 50px;
+                        border: 1px solid #E0E0E0;
+                        input{
+                            width: 264px;
+                            height: 50px;
+                            padding-left: 14px;
+                            border: none;
+                            border-right: 1px solid #E0E0E0;
+                        }
+                        a{
+                            @include bgImg(18px,18px,'/imgs/icon-search.png');
                         }
                     }
                 }
