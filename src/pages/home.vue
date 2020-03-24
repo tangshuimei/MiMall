@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="home">
         <nav-header></nav-header>
         <router-view></router-view>
         <nav-footer></nav-footer>
@@ -17,4 +17,12 @@
         }
     }
 </script>
+<style lang="scss">
+    .home{
+        .header{
+            position: relative;
+            z-index: 100;
+        }
+    }
+</style>
 
