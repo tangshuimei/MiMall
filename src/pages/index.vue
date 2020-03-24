@@ -55,7 +55,34 @@
                     <img src="/imgs/banner-1.jpg" alt="">
                 </a>
             </div>
-            <div class="product-box"></div>
+        </div>
+        
+        <div class="product-box">
+            <div class="container">
+                <h2>手机</h2>
+                <div class="wrapper">
+                    <div class="banner-left">
+                        <a href="/#/product/35">
+                            <img src="/imgs/product-left.jpg" alt="">
+                        </a>
+                    </div>
+                    <div class="list-box">
+                        <div class="list" v-for="(arr,i) in phoneList" :key="i">
+                            <div class="item" v-for="(item,j) in arr" :key="j">
+                                <span :class="j%2===0?'new-pro':'kill-pro'">{{j%2===0?'新品':'秒杀'}}</span>
+                                <div class="item-img">
+                                    <img :src="item.mainImage" alt="">
+                                </div>
+                                <div class="item-info">
+                                    <h3>{{item.name}}</h3>
+                                    <p>{{item.subtitle}}</p>
+                                    <p class="price">{{item.price | currency}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <service-bar></service-bar>
     </div>
@@ -143,7 +170,8 @@
                         id: 47,
                         img: '/imgs/ads/ads-1.jpg'
                     },
-                ]
+                ],
+                phoneList: []
             }
         },
         components: {
@@ -151,15 +179,33 @@
             Swiper,
             SwiperSlide
         },
+        filters: {
+            currency(val){
+                if(!val) return 0.00
+                return val.toFixed(2) + '元'
+            }
+        },
         // computed: {
         //     swiper() {
         //         return this.$refs.mySwiper.$swiper
         //     }
         // },
-        // mounted() {
-        //     console.log('Current Swiper instance object', this.swiper)
-        //     this.swiper.slideTo(3, 1000, false)
-        // }
+        mounted() {
+           this.init();
+        },
+        methods: {
+            init(){
+                this.axios.get('/products',{
+                    params: {
+                        categoryId: 100012,
+                        pageSize: 14
+                    }
+                }).then(res=>{
+                    res.list = res.list.slice(6,14)
+                    this.phoneList = [res.list.slice(0,4),res.list.slice(4,8)]
+                })
+            }
+        }
     }
 </script>
 <style lang="scss">
@@ -261,6 +307,90 @@
         }
         .banner{
             margin-bottom: 50px;
+        }
+        .product-box{
+            padding: 30px 0 50px;
+            background-color: $colorJ;
+            h2{
+               height: 21px; 
+               font-size: $fontF;
+               line-height: 21px; 
+               color: $colorB;
+               margin-bottom: 20px;
+            }
+            .wrapper{
+                display: flex;
+                .banner-left{
+                    img{
+                        width: 224px;
+                        height: 619px;
+                        margin-right: 16px;
+                    }
+                }
+                .list-box{
+                    .list{
+                        @include flex();
+                        width: 986px;
+                        margin-bottom: 14px;
+                        &:last-child{
+                            margin-bottom: 0;
+                        }
+                        .item{
+                            width: 236px;
+                            height: 302px;
+                            background-color: $colorG;
+                            text-align: center;
+                            span{
+                                display: inline-block;
+                                width: 67px;
+                                height: 24px;
+                                color: $colorG;
+                                font-size: 14px;
+                                line-height: 24px;
+                                &.new-pro{
+                                    background-color: #7ECF68;
+                                }
+                                &.kill-pro{
+                                    background-color: #E82626;
+                                }
+                            }
+                            .item-img{
+                                img{
+                                    height: 195px;
+                                }
+                                h3{
+                                    
+                                }
+                            }
+                            .item-info{
+                                h3{
+                                    color: $colorB;
+                                    font-size: $fontJ;
+                                    line-height: $fontJ;
+                                    font-weight: bold;
+                                }
+                                p{
+                                    color: $colorD;
+                                    line-height: 13px;
+                                    margin: 6px auto 13px;
+                                }
+                                .price{
+                                    color: #F20A0A;
+                                    font-size: $fontJ;
+                                    font-weight: bold;
+                                    cursor: pointer;
+                                    &:after{
+                                        content: '';
+                                        margin-left: 5px;
+                                        vertical-align: middle;
+                                        @include bgImg(22px,22px,'/imgs/icon-cart-hover.png');
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
 
     }
