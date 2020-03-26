@@ -47,12 +47,12 @@
             </div>
             <div class="ads-box">
                 <a :href="'/#/product/' + item.id" v-for="(item,index) in adsList" :key="index">
-                    <img :src="item.img" alt="">
+                    <img v-lazy="item.img" alt="">
                 </a>
             </div>
             <div class="banner">
                 <a href="/#/product/3">
-                    <img src="/imgs/banner-1.jpg" alt="">
+                    <img v-lazy="'/imgs/banner-1.jpg'" alt="">
                 </a>
             </div>
         </div>
@@ -63,7 +63,7 @@
                 <div class="wrapper">
                     <div class="banner-left">
                         <a href="/#/product/35">
-                            <img src="/imgs/product-left.jpg" alt="">
+                            <img v-lazy="'/imgs/product-left.jpg'" alt="">
                         </a>
                     </div>
                     <div class="list-box">
@@ -71,12 +71,12 @@
                             <div class="item" v-for="(item,j) in arr" :key="j">
                                 <span :class="j%2===0?'new-pro':'kill-pro'">{{j%2===0?'新品':'秒杀'}}</span>
                                 <div class="item-img">
-                                    <img :src="item.mainImage" alt="">
+                                    <img v-lazy="item.mainImage" alt="">
                                 </div>
                                 <div class="item-info">
                                     <h3>{{item.name}}</h3>
                                     <p>{{item.subtitle}}</p>
-                                    <p class="price">{{item.price | currency}}</p>
+                                    <p class="price" @click="addCart(item.id)">{{item.price | currency}}</p>
                                 </div>
                             </div>
                         </div>
@@ -85,16 +85,31 @@
             </div>
         </div>
         <service-bar></service-bar>
+        <modal 
+            title="提示" 
+            sureText="查看购物车"
+            btnType="1"
+            modalType="middel"
+            :showModal="showModal"   
+            @submit="goToCart"
+            @cancel="closeModal"
+        >
+            <template v-slot:body>
+                <p>商品添加成功!</p>
+            </template>
+        </modal>
     </div>
 </template>
 <script>
     import ServiceBar from './../components/ServiceBar';
+    import Modal from './../components/Modal';
     import {Swiper, SwiperSlide} from 'vue-awesome-swiper';
     import 'swiper/css/swiper.css';
     export default {
         name: 'index',
         data(){
             return {
+                showModal: false,
                 swiperOptions: {
                     pagination: {
                         el: '.swiper-pagination',
@@ -176,6 +191,7 @@
         },
         components: {
             ServiceBar,
+            Modal,
             Swiper,
             SwiperSlide
         },
@@ -204,6 +220,24 @@
                     res.list = res.list.slice(6,14)
                     this.phoneList = [res.list.slice(0,4),res.list.slice(4,8)]
                 })
+            },
+            addCart(){
+                this.showModal = true;
+                return
+                // this.axios.post('/carts',{
+                //     productId: id,
+                //     selected: true
+                // }).then(res=>{
+                //     console.log(res)
+                // }).catch(()=>{
+                //     this.showModal = true
+                // })
+            },
+            goToCart(){
+                this.$router.push('/cart')
+            },
+            closeModal(){
+                this.showModal = false
             }
         }
     }

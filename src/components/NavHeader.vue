@@ -29,7 +29,7 @@
                                 <li class="product" v-for="item in phoneList" :key="item.id">
                                     <a :href="'/#/product/' + item.id" target="_blank">
                                         <div class="pro-img">
-                                            <img :src="item.mainImage" :alt="item.subtitle">
+                                            <img v-lazy="item.mainImage" :alt="item.subtitle">
                                         </div>
                                         <div class="pro-name">{{item.name}}</div>
                                         <div class="pro-price">{{item.price | currency}}</div>
@@ -48,7 +48,7 @@
                                 <li class="product">
                                     <a href="" target="_blank">
                                         <div class="pro-img">
-                                            <img src="/imgs/pro1.png" alt="">
+                                            <img v-lazy="'/imgs/pro1.png'" alt="">
                                         </div>
                                         <div class="pro-name">小米CC9</div>
                                         <div class="pro-price">￥1790.00元</div>
@@ -57,7 +57,7 @@
                                 <li class="product">
                                     <a href="" target="_blank">
                                         <div class="pro-img">
-                                            <img src="/imgs/pro1.png" alt="">
+                                            <img v-lazy="'/imgs/pro1.png'" alt="">
                                         </div>
                                         <div class="pro-name">小米CC9</div>
                                         <div class="pro-price">￥1790.00元</div>
@@ -66,7 +66,7 @@
                                 <li class="product">
                                     <a href="" target="_blank">
                                         <div class="pro-img">
-                                            <img src="/imgs/pro1.png" alt="">
+                                            <img v-lazy="'/imgs/pro1.png'" alt="">
                                         </div>
                                         <div class="pro-name">小米CC9</div>
                                         <div class="pro-price">￥1790.00元</div>
@@ -75,7 +75,7 @@
                                 <li class="product">
                                     <a href="" target="_blank">
                                         <div class="pro-img">
-                                            <img src="/imgs/pro1.png" alt="">
+                                            <img v-lazy="'/imgs/pro1.png'" alt="">
                                         </div>
                                         <div class="pro-name">小米CC9</div>
                                         <div class="pro-price">￥1790.00元</div>
@@ -84,7 +84,7 @@
                                 <li class="product">
                                     <a href="" target="_blank">
                                         <div class="pro-img">
-                                            <img src="/imgs/pro1.png" alt="">
+                                            <img v-lazy="'/imgs/pro1.png'" alt="">
                                         </div>
                                         <div class="pro-name">小米CC9</div>
                                         <div class="pro-price">￥1790.00元</div>
@@ -93,7 +93,7 @@
                                 <li class="product">
                                     <a href="" target="_blank">
                                         <div class="pro-img">
-                                            <img src="/imgs/pro1.png" alt="">
+                                            <img v-lazy="'/imgs/pro1.png'" alt="">
                                         </div>
                                         <div class="pro-name">小米CC9</div>
                                         <div class="pro-price">￥1790.00元</div>
@@ -102,7 +102,7 @@
                                 <li class="product">
                                     <a href="" target="_blank">
                                         <div class="pro-img">
-                                            <img src="/imgs/pro1.png" alt="">
+                                            <img v-lazy="'/imgs/pro1.png'" alt="">
                                         </div>
                                         <div class="pro-name">小米CC9</div>
                                         <div class="pro-price">￥1790.00元</div>
