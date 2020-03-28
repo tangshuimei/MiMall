@@ -182,6 +182,9 @@
                     display: inline-block;
                     color: #B0B0B0;
                     margin-right: 14px; 
+                    &:last-child{
+                        margin-right: 0;
+                    }
                 }
                 .my-cart{
                     width: 110px;

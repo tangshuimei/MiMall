@@ -32,3 +32,41 @@
     background: url($img) no-repeat center;
     background-size: contain;
 }
+
+//
+@mixin sep($h: 1em,$color:#dddddd){
+    position: relative;
+    display: inline-block;
+    &:after{
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: $h;
+        border: 1px solid $color;
+    }
+    &:last-child:after{
+        border: none;
+    }
+}
+
+@mixin sepTransform($h: 1em,$color:#dddddd){
+    position: relative;
+    &:after{
+        content: '';
+        position: absolute;
+        top: 50%;
+        right: 0;
+        height: $h;
+        border-right: 1px solid $color;
+        transform: translateY(-50%);
+        -webkit-transform: translateY(-50%);
+        -moz-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        -o-transform: translateY(-50%);
+    }
+    &:last-child:after{
+        border: none;
+    }  
+    
+}

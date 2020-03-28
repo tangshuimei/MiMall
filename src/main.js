@@ -3,6 +3,7 @@ import router from './router'
 import axios from 'axios'
 import VueAxios from 'vue-axios' //把axios绑定到vue实例中，方便用this去调用，这样就不需要重复引入了
 import VueLazyLoad from 'vue-lazyload'
+import VueCookie from 'vue-cookie'
 
 import App from './App.vue'
 
@@ -27,25 +28,30 @@ axios.defaults.timeout = 8000;
 // 接口错误拦截
 axios.interceptors.response.use(function(response){
   let res = response.data;
+  let path = location.hash;
   if(res.status == 0){
     return res.data
   }
   else if(res.status == 10){
     // 登录拦截
-    // 使用window.location.href跳的原因是，在main.js中使用路由是没用的，路由是挂载在路由实例中，在页面中才能使用this.$route.push，这里的this不是指向vue实例
-    window.location.href = '/#/login'
+    // 使用window.location.href跳的原因是，在main.js中使用路由是没用的，路由是挂载在路由实例中，在页面中才能使用this.$route.push，这里的this不是指向vue实例index
+    if(path !== '#/index')
+      window.location.href = '/#/login'
   }
   else{
+    Promise.reject(res)
     // alert(res.msg)
   }
 },function(error){
   console.log(error)
 })
 
+
+Vue.use(VueAxios,axios);
 Vue.use(VueLazyLoad,{
   loading: '/imgs/loading-svg/loading.svg'
-})
-Vue.use(VueAxios,axios) 
+});
+Vue.use(VueCookie);
 Vue.config.productionTip = false //生产环境的提示
 
 new Vue({ 
