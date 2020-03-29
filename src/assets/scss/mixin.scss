@@ -22,6 +22,19 @@
     height: $h;
 }
 
+@mixin positionCenter($pos: absolute,$w: 100%,$h: 100%) {
+    position: $pos;
+    top: 50%;
+    left: 50%;
+    width: $w;
+    height: $h;
+    transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+}
+
 // 背景图设置
 @mixin postionImg($pos: absolute,$top: 0,$right: 0,$w:0,$h:0,$img: ''){
     position: $pos;

@@ -50,6 +50,7 @@
             width: 100%;
             top: 0;
             box-shadow: 0 5px 5px #cccccc;
+            z-index: 100;
         }
         .container{
             @include flex();
