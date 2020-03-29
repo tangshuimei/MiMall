@@ -9,13 +9,13 @@
             <h2>焕然一新的设计 注入温柔与浪漫的新配色</h2>
             <p>焕然一新的设计 注入温柔与浪漫的新配色</p>
             <div class="video-bg">
-                <span @click="showSlide=true"></span>
+                <span @click="showSlide='slideDown'"></span>
             </div>
             <!-- 不要在video-box添加v-if，否则动画没了 -->
             <div class="video-box">
-                <div class="overlay" v-if="showSlide"></div>
-                <div class="video" :class="{'slide': showSlide}">
-                    <span class="icon-close" @click="showSlide=false"></span>
+                <div class="overlay" v-if="showSlide == 'slideDown'"></div>
+                <div class="video" :class="showSlide">
+                    <span class="icon-close" @click="showSlide='slideUp'"></span>
                     <video src="/imgs/product/video.mp4" controls="controls" muted autoplay></video>
                 </div>
             </div>
@@ -28,7 +28,7 @@
         name: 'product',
         data(){
             return {
-                showSlide: false
+                showSlide: ''
             }
         },
         components: {
@@ -80,10 +80,37 @@
                     height: 536px;
                     opacity: 0;
                     transform: translate(-50%,-50%);
-                    transition: all .6s;
-                    &.slide{
+                    @keyframes slideDown{
+                        from{
+                            top: -50%;
+                            opacity: 0;
+                        }
+                        to{
+                            top: 50%;
+                            opacity: 1;
+                        }
+
+                    }
+                    @keyframes slideUp{
+                        
+                        from{
+                            top: 50%;
+                            opacity: 1;
+                        }
+                        to{
+                            top: -50%;
+                            opacity: 0;
+                        }
+                    }
+                    &.slideDown{
+                        animation: slideDown .6s linear ;
                         top: 50%;
                         opacity: 1;
+                    }
+                    &.slideUp{
+                        animation: slideUp .6s linear ;
+                        top: -50%;
+                        opacity: 0;
                     }
                     .icon-close{
                         position: absolute;
