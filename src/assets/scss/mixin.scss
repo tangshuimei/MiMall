@@ -70,3 +70,8 @@
     }  
     
 }
+
+@mixin sepSpan($marginRow:0,$color:#dddddd){
+    display: inline-block;
+    margin: 0 $marginRow;
+}

@@ -33,7 +33,7 @@
                         <div v-else>
                             <input type="text" placeholder="邮箱/手机号码/小米ID" v-model="username" >
                             <input type="password" placeholder="密码" v-model="password">
-                            <button class="btn" @click="login">登录</button>
+                            <button class="btn" @click.prevent="login">登录</button>
                             <div class="other-pannel">
                                 <p class="login-sns">
                                     <a href="javascript:;">手机短信登录/注册</a>
@@ -107,9 +107,11 @@
                 }).then((res)=>{
                     this.$cookie.set('userId',res.id,{expires: '1M'});
                     // 跳转的时候把数据带过去，要用vuex后期补上
-
-                    this.$router.push('/#/index')
+                    // vuex：1.dispatch派发（触发）action
+                    this.$store.dispatch('saveUserName',res.username);
+                    this.$router.push('/index');
                 }).catch((error)=>{
+                    console.log(1)
                     console.log(error)
                 })
             },

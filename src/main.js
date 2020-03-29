@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import router from './router'
+import store from './store'
 import axios from 'axios'
 import VueAxios from 'vue-axios' //把axios绑定到vue实例中，方便用this去调用，这样就不需要重复引入了
 import VueLazyLoad from 'vue-lazyload'
@@ -55,6 +56,7 @@ Vue.use(VueCookie);
 Vue.config.productionTip = false //生产环境的提示
 
 new Vue({ 
+  store,
   router,
   render: h => h(App),
 }).$mount('#app')
