@@ -14,3 +14,17 @@ input{
     outline: none;
     box-sizing: border-box;
 }
+.clearfix:before,.clearfix:after{
+    content: '';
+    display: table;
+}
+.clearfix:after{
+    clear: both;
+}
+
+.fl{
+    float: left;
+}
+.fr{
+    float: right;
+}

@@ -38,6 +38,7 @@ axios.interceptors.response.use(function(response){
     // 使用window.location.href跳的原因是，在main.js中使用路由是没用的，路由是挂载在路由实例中，在页面中才能使用this.$route.push，这里的this不是指向vue实例index
     if(path !== '#/index')
       window.location.href = '/#/login'
+    return Promise.reject(res)
   }
   else{
     Promise.reject(res)

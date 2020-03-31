@@ -45,12 +45,12 @@
         line-height: 70px;
         border-top: 1px solid $colorH;
         background-color: $colorG; 
+        z-index: 10;
         &.is_fixed{
             position: fixed;
             width: 100%;
             top: 0;
             box-shadow: 0 5px 5px #cccccc;
-            z-index: 100;
         }
         .container{
             @include flex();

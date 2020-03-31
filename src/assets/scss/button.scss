@@ -8,6 +8,12 @@
     background-color: $colorA;
     cursor: pointer;
 }
+.btn-main-color{
+    color: $colorA;
+    border: 1px solid $colorA;
+    background-color: $colorG;
+
+}
 .btn-default{
     background-color: #B0B0B0;
 }
