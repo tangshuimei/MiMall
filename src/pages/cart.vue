@@ -68,7 +68,6 @@
 <script>
     import OrderHeader from './../components/OrderHeader'
     import NavFooter from './../components/NavFooter'
-    
     export default {
         name: 'cart',
         data(){
@@ -116,7 +115,7 @@
                 // every 每个都没有选中
                 let isCheck = this.list.every(item=>!item.productSelected)
                 if(isCheck){
-                    alert('请选择一件商品')
+                    this.$message.warning('请选择一件商品')
                 }
                 else{
                     this.$router.push('/order/confirm');
