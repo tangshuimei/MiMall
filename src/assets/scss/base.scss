@@ -1,18 +1,10 @@
 // base的作用：公共抽离出来的样式
+@import './mixin.scss';
 .container{
     position: relative;
     width: 1226px;
     margin-left: auto;
     margin-right: auto;
-}
-a img{
-    width: 100%;
-    height: 100%;
-}
-input{
-    font-size: 14px;
-    outline: none;
-    box-sizing: border-box;
 }
 .clearfix:before,.clearfix:after{
     content: '';
@@ -27,4 +19,31 @@ input{
 }
 .fr{
     float: right;
+}
+// 公共logo
+.header-logo{
+    display: inline-block;
+    width: 48px;
+    height: 48px;
+    margin-right: 45px;
+    background-color: #FF6600;
+    overflow: hidden;
+    a{
+        display: inline-block;
+        width: 110px;
+        height: 48px;
+        &:before{
+            content: " ";
+            @include bgImg(48px,48px,'/imgs/mi-logo.png',48px);
+            transition: margin .2s;
+        }
+        &:after{
+            content: " ";
+            @include bgImg(48px,48px,'/imgs/home-logo.png',48px);
+        }
+        &:hover::before{
+            margin-left: -48px;
+            transition: margin .2s;
+        }
+    }
 }

@@ -1,5 +1,5 @@
 <template>
-    <div class="index">
+    <div class="page-index">
         <div class="container">
             <div class="swiper-box">
                 <div class="nav-menu">
@@ -244,7 +244,7 @@
 <style lang="scss">
     @import './../assets/scss/config.scss';
     @import './../assets/scss/mixin.scss';
-    .index{
+    .page-index{
         .swiper-box{ 
             position: relative;
             .nav-menu{

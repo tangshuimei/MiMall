@@ -86,5 +86,8 @@
 
 @mixin sepSpan($marginRow:0,$color:#dddddd){
     display: inline-block;
+    color: $color;
     margin: 0 $marginRow;
+    line-height: 1em;
+    margin-top: -2px;
 }

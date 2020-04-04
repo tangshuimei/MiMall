@@ -1,6 +1,6 @@
 <template>
     <transition name="slide">
-        <div class="modal" v-show="showModal">
+        <div class="component-modal" v-show="showModal">
             <div class="mask"></div>
             <div class="modal-dialog">
                 <div class="modal-header">

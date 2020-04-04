@@ -1,5 +1,5 @@
 <template>
-    <div class="detail">
+    <div class="page-detail">
         <product-param :title="product.name"></product-param>
         <div class="container detail-container">
             <div class="swiper-box">
@@ -241,7 +241,7 @@
 <style lang="scss">
     @import './../assets/scss/mixin.scss';
     @import './../assets/scss/config.scss';
-    .detail{
+    .page-detail{
         .detail-container{
             display: flex;
             justify-content: space-between;
@@ -418,9 +418,6 @@
                             color: $colorA;
                             border-color: $colorA;
                         }
-                    }
-                    .item-large-box{ 
-
                     }
                     .item-large{
                         position: relative;

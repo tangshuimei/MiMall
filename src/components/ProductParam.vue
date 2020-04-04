@@ -1,5 +1,5 @@
 <template>
-    <div class="nav-bar" :class="{'is_fixed':isFixed}">
+    <div class="component-product-params" :class="{'is_fixed':isFixed}">
         <div class="container">
             <div class="pro-title">{{title}}</div>
             <div class="pro-param">
@@ -13,7 +13,7 @@
 </template>
 <script>
     export default {
-        name: 'nav-bar',
+        name: 'product-params',
         props: {
             title: String
         },
@@ -40,7 +40,7 @@
 <style lang="scss">
     @import './../assets/scss/config.scss';
     @import './../assets/scss/mixin.scss';
-    .nav-bar{
+    .component-product-params{
         height: 70px;
         line-height: 70px;
         border-top: 1px solid $colorH;

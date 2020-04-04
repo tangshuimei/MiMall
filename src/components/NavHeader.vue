@@ -1,5 +1,5 @@
 <template>
-    <div class="header">
+    <div class="component-nav-header">
         <div class="nav-topbar">
             <div class="container">
                 <div class="topbar-menu">
@@ -178,7 +178,7 @@
     @import './../assets/scss/config.scss';
     @import './../assets/scss/mixin.scss';
 
-    .header{
+    .component-nav-header{
         .nav-topbar{
             height: 39px;
             line-height: 39px;
@@ -211,30 +211,6 @@
                 position: relative;
                 @include flex();
                 height: 112px;
-                .header-logo{
-                    display: inline-block;
-                    width: 55px;
-                    height: 55px;
-                    background-color: #FF6600;
-                    a{
-                        display: inline-block;
-                        width: 110px;
-                        height: 55px;
-                        &:before{
-                            content: " ";
-                            @include bgImg(55px,55px,'/imgs/mi-logo.png',55px);
-                            transition: margin .2s;
-                        }
-                        &:after{
-                            content: " ";
-                            @include bgImg(55px,55px,'/imgs/home-logo.png',55px);
-                        }
-                        &:hover::before{
-                            margin-left: -55px;
-                            transition: margin .2s;
-                        }
-                    }
-                }
                 .header-menu{
                     display: inline-block;
                     padding-left: 209px;

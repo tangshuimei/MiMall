@@ -1,5 +1,5 @@
 <template>
-    <div class="login">
+    <div class="page-login">
         <div class="header">
             <div class="container">
                 <div class="logo">
@@ -132,7 +132,7 @@
 <style lang="scss">
 @import './../assets/scss/mixin.scss';
 @import './../assets/scss/config.scss';
-    .login{
+    .page-login{
         .header{
             .logo{
                 .img{

@@ -1,5 +1,5 @@
 <template>
-    <div class="service">
+    <div class="component-service-bar">
         <div class="container">
             <ul>
             <li>
@@ -30,7 +30,7 @@
 </script>``
 <style lang="scss">
     @import './../assets/scss/mixin.scss';
-    .service{
+    .component-service-bar{
         padding: 33px 0;
         color: #666666;
         font-size: 16px;

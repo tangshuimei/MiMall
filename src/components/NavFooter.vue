@@ -1,5 +1,5 @@
 <template>
-    <div class="footer">
+    <div class="component-nav-footer">
         <div class="footer-logo">
             <div class="logo">
                 <img src="/imgs/mi-logo.png" alt="">
@@ -24,7 +24,7 @@
 </script>
 <style lang="scss">
     @import './../assets/scss/config.scss';
-    .footer{
+    .component-nav-footer{
         padding-bottom: 20px;
         color: #dddddd;
         font-size: 12px;

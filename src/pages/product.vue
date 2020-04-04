@@ -1,5 +1,5 @@
 <template>
-    <div class="product">
+    <div class="page-product">
         <product-param :title="product.name">
             <template v-slot:buy>
                 <button class="btn" @click="buy(product.id)">立即购买</button>
@@ -77,7 +77,7 @@
 <style lang="scss">
     @import './../assets/scss/mixin.scss';
     @import './../assets/scss/config.scss';
-    .product{
+    .page-product{
         button{
             margin-left: 10px;
         }
