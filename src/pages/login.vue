@@ -105,13 +105,18 @@
                     username,
                     password
                 }).then((res)=>{
-                    this.$cookie.set('userId',res.id,{expires: '1M'});
+                    // Session 会话级别：即浏览器关掉
+                    this.$cookie.set('userId',res.id,{expires: 'Session'});
                     // 跳转的时候把数据带过去，要用vuex后期补上
                     // vuex：1.dispatch派发（触发）action
                     this.$store.dispatch('saveUserName',res.username);
-                    this.$router.push('/index');
+                    this.$router.push({
+                        name: 'index',
+                        params: { // 为了不出现在路由
+                            from: 'login'
+                        }
+                    });
                 }).catch((error)=>{
-                    console.log(1)
                     console.log(error)
                 })
             },

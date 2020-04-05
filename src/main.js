@@ -41,9 +41,11 @@ axios.interceptors.response.use(function(response){
       window.location.href = '/#/login'
     return Promise.reject(res)
   }
+  else if(res.status == 1){
+    Message.warning('用户名不存在')
+  }
   else{
-    Promise.reject(res)
-    // alert(res.msg)
+      Promise.reject(res)
   }
 },function(error){
   console.log(error)

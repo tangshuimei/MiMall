@@ -17,9 +17,11 @@ export default {
    
   },
   mounted () {
-    // 在这里拉取一次user数据即可，不要在navHeader中拉取，因为不一定用到
-    this.getUser();
-    this.getCartCount();
+    if(this.$cookie.get('userId')){
+      // 在这里拉取一次user数据即可，不要在navHeader中拉取，因为不一定用到
+      this.getUser();
+      this.getCartCount();
+    }
   },
   methods: {
     getUser(){
@@ -29,12 +31,10 @@ export default {
       })
     },
     getCartCount(){
-      this.axios.get('/carts/products/sum').then((res)=>{
-        // 保存到vuex里面
-        this.$store.dispatch('saveCartCount',res);
-        
-      })
-      
+        this.axios.get('/carts/products/sum').then((res=0)=>{
+            // 保存到vuex里面
+            this.$store.dispatch('saveCartCount',res);
+        })
     }
   }
 }
