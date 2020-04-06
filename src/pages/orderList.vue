@@ -1,10 +1,6 @@
 <template>
-    <div>
-        <div class="inner">
-            <span class="left"></span>
-            <input class="mid" >
-            <span class="right"></span>
-        </div>
+    <div class="page-order-list">
+       
     </div>
 </template>
 <script>

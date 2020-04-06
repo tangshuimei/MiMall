@@ -2,7 +2,7 @@
     <div class="page-cart">
         <order-header title="购物车">
             <template v-slot:tip>
-                 <p class="order-header-tip">温馨提示：产品是否购买成功，以最终下单为准，请尽快结算</p>
+                <p class="order-header-tip">温馨提示：产品是否购买成功，以最终下单为准，请尽快结算</p>
             </template>
         </order-header>
         <div class="container page-main">

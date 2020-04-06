@@ -1,5 +1,5 @@
 
-.modal{
+.component-modal{
     @include position(fixed);
     z-index: 10;
     transition: all .5s;
@@ -25,7 +25,7 @@
         opacity: 0;
     }
     .modal-dialog{
-        @include position(absolute,40%,50%,660px,auto);
+        @include position(fixed,40%,50%,660px,auto);
         background-color: $colorG;
         transform:   translate(-50%,-50%);
         -webkit-transform:   translate(-50%,-50%);

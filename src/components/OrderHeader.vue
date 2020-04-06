@@ -24,7 +24,8 @@
             }
         },
         props: {
-            title: String
+            title: String,
+            tip: String,
         },
         computed: {
             username(){

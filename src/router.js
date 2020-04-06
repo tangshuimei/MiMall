@@ -57,8 +57,8 @@ export default new Router({
             redirect: '/order/list',
             children: [
                 {
-                    path: 'comfirm',
-                    name: 'order-comfirm',
+                    path: 'confirm',
+                    name: 'order-confirm',
                     component: OrderConfirm
                 },
                 {
