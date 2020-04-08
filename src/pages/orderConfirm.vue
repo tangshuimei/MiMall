@@ -3,7 +3,7 @@
         <div class="address-info">
             <h2>收货地址</h2>
             <div class="list clearfix">
-                <div class="item fl" v-for="item in list" :key="item.productId">
+                <div class="item fl" :class="{'checked': shippingId == item.id}" v-for="item in list" :key="item.id" @click="chooseAddress(item.id)">
                     <p class="name">{{item.receiverName}}</p>
                     <p class="phone">{{item.receiverPhone}}</p>
                     <p class="address">{{item.receiverProvince + item.receiverCity + item.receiverDistrict + item.receiverAddress}}</p>
@@ -29,6 +29,9 @@
         </div>
         <div class="shipping-box">
             <p>共{{count}}件商品</p>
+            <div class="btns">
+                <a href="javascript:;" @click="submitOrder">提交订单</a>
+            </div>
         </div>
         <modal 
             :title="modalName" 
@@ -38,7 +41,6 @@
             @submit="submitAddress"
         >
             <template v-slot:body>
-                
                 <p v-if="userAction == 2">您确认要删除此地址吗？</p>
                 <div v-if="userAction == 0" class="edit-wrap">
                     <div class="item">
@@ -92,7 +94,8 @@
                 checkItem: {}, // 当前选中需要操作的地址
                 userAction: '', // 用户行为 0：新增 1：编辑 2：删除
                 showModal: false,
-                modalName: ''
+                modalName: '',
+                shippingId: ''
             }
         },
         components: {
@@ -194,11 +197,32 @@
             editAddress(){
                 
             },
+            chooseAddress(id){
+                if(!id) return 
+                this.shippingId = id
+            },
+            submitOrder(){
+                if(!this.shippingId){
+                    this.$message.warning('请选择收货地址！')
+                    return
+                }
+                this.axios.post('/orders',{
+                    shippingId: this.shippingId
+                }).then(res=>{
+                    this.$router.push({
+                        path: '/order/pay',
+                        query: {
+                            orderNo: res.orderNo
+                        }
+                    })
+                })
+            }
         }
     }
 </script>
 <style lang="scss">
     @import './../assets/scss/mixin.scss';
+    @import './../assets/scss/config.scss';
     .page-order-confirm{
         .address-info{
             h2{
@@ -249,6 +273,9 @@
                                 margin-bottom: 8px;
                             }
                         }
+                    }
+                    &.checked{
+                        border-color: $colorA;
                     }
                 }
             }

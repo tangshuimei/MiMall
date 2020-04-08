@@ -5,8 +5,21 @@
 </template>
 <script>
     export default {
-        name: 'orderList'
+        name: 'orderList',
+        data(){
+            return {
 
+            }
+        },
+        mounted () {
+            this.getOrderList()
+        },
+        methods: {
+            getOrderList(){
+                
+                this.axios.get('/orders').then(()=>{})
+            }
+        }
     }
 </script>
 <style lang="scss">
