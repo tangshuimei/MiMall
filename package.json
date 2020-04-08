@@ -25,6 +25,7 @@
     "eslint-plugin-vue": "^6.1.2",
     "mockjs": "^1.1.0",
     "node-sass": "^4.13.1",
+    "qrcode": "^1.4.4",
     "sass-loader": "^8.0.2",
     "swiper": "^5.3.6",
     "vue-awesome-swiper": "^4.0.4",

@@ -29,6 +29,7 @@ axios.defaults.timeout = 8000;
 
 // 接口错误拦截
 axios.interceptors.response.use(function(response){
+  // 业务拦截：state是200
   let res = response.data;
   let path = location.hash;
   if(res.status == 0){
@@ -48,7 +49,11 @@ axios.interceptors.response.use(function(response){
       Promise.reject(res)
   }
 },function(error){
-  console.log(error)
+  // 状态码拦截
+  let res = error.response
+  Message.error(res.data.message)
+  // 一定要return一个promise.reject才会被catch
+  return Promise.reject(error)
 })
 
 
