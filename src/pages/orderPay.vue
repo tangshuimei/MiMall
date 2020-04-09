@@ -1,10 +1,18 @@
 <template>
     <div class="page-order-pay">
-        {{orderId}}
-        <div class="btns">
-            <a href="javascript:;" @click="paySubmit(1)">支付宝</a>
-            <a href="javascript:;" @click="paySubmit(2)">微信</a>
+        <order-header title="订单支付">
+            <template v-slot:tip>
+                <span>订单支付tip</span>
+            </template>
+        </order-header>
+        <div class="order-body">
+            {{orderId}}
+            <div class="btns">
+                <a href="javascript:;" @click="paySubmit(1)">支付宝</a>
+                <a href="javascript:;" @click="paySubmit(2)">微信</a>
+            </div>
         </div>
+       
         
         <scan-pay-code 
             :img="payImg"
@@ -26,6 +34,7 @@
 </template>
 <script>
     import QRCode from 'qrcode';
+    import OrderHeader from './../components/OrderHeader'
     import ScanPayCode from './../components/ScanPayCode';
     import Modal from './../components/Modal';
     export default {
@@ -42,6 +51,7 @@
         mounted () {
         },
         components: {
+            OrderHeader,
             ScanPayCode,
             Modal
         },

@@ -1,23 +1,49 @@
 <template>
     <div class="page-order-list">
-       
+        <order-header title="订单列表">
+            <template v-slot:tip>
+                <span>订单列表tip</span>
+            </template>
+        </order-header>
+        <div class="order-body">
+            <loading v-if="loading"></loading>
+            <ul>
+                <li v-for="item in list" :key="item.id">
+
+                </li>
+            </ul>
+            <no-data v-if="!loading && list.length == 0"></no-data>
+        </div>
     </div>
 </template>
 <script>
+    import OrderHeader from './../components/OrderHeader'
+    import Loading from './../components/Loading'
+    import NoData from './../components/NoData'
     export default {
         name: 'orderList',
         data(){
             return {
-
+                list: [],
+                loading: true
             }
+        },
+        components: {
+            OrderHeader,
+            Loading,
+            NoData
         },
         mounted () {
             this.getOrderList()
         },
         methods: {
             getOrderList(){
-                
-                this.axios.get('/orders').then(()=>{})
+                this.axios.get('/orders').then((res)=>{
+                    this.loading = false
+                    this.list = [] || res.list
+                }).catch(()=>{
+                    this.loading = false
+                })
             }
         }
     }

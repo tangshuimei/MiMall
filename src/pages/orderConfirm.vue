@@ -1,36 +1,43 @@
 <template>
     <div class="page-order-confirm">
-        <div class="address-info">
-            <h2>收货地址</h2>
-            <div class="list clearfix">
-                <div class="item fl" :class="{'checked': shippingId == item.id}" v-for="item in list" :key="item.id" @click="chooseAddress(item.id)">
-                    <p class="name">{{item.receiverName}}</p>
-                    <p class="phone">{{item.receiverPhone}}</p>
-                    <p class="address">{{item.receiverProvince + item.receiverCity + item.receiverDistrict + item.receiverAddress}}</p>
-                    <p class="btns">
-                        <a href="javascript:;" class="icon-delete" @click="deleteAddress(item)"></a>
-                        <a href="javascript:;" class="icon-edit" @click="editAddress(item)"></a>
-                    </p>
-                </div>
-                <div class="item fl add-btn" @click="openAddressModal">
-                    <div class="add-btn-caontain">
-                        <img src="/imgs/icon-add.png" alt="">
-                        <p>添加新地址</p>
+        <order-header title="订单确认">
+            <template v-slot:tip>
+                <span>订单确认tip</span>
+            </template>
+        </order-header>
+        <div class="order-body">
+            <div class="address-info">
+                <h2>收货地址</h2>
+                <div class="list clearfix">
+                    <div class="item fl" :class="{'checked': shippingId == item.id}" v-for="item in list" :key="item.id" @click="chooseAddress(item.id)">
+                        <p class="name">{{item.receiverName}}</p>
+                        <p class="phone">{{item.receiverPhone}}</p>
+                        <p class="address">{{item.receiverProvince + item.receiverCity + item.receiverDistrict + item.receiverAddress}}</p>
+                        <p class="btns">
+                            <a href="javascript:;" class="icon-delete" @click="deleteAddress(item)"></a>
+                            <a href="javascript:;" class="icon-edit" @click="editAddress(item)"></a>
+                        </p>
+                    </div>
+                    <div class="item fl add-btn" @click="openAddressModal">
+                        <div class="add-btn-caontain">
+                            <img src="/imgs/icon-add.png" alt="">
+                            <p>添加新地址</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="cart-list">
-            <ul>
-                <li v-for="item in cartList" :key="item.id">
-                    {{item.productName }} {{item.productPrice}}元x{{item.quantity}}
-                </li>
-            </ul>
-        </div>
-        <div class="shipping-box">
-            <p>共{{count}}件商品</p>
-            <div class="btns">
-                <a href="javascript:;" @click="submitOrder">提交订单</a>
+            <div class="cart-list">
+                <ul>
+                    <li v-for="item in cartList" :key="item.id">
+                        {{item.productName }} {{item.productPrice}}元x{{item.quantity}}
+                    </li>
+                </ul>
+            </div>
+            <div class="shipping-box">
+                <p>共{{count}}件商品</p>
+                <div class="btns">
+                    <a href="javascript:;" @click="submitOrder">提交订单</a>
+                </div>
             </div>
         </div>
         <modal 
@@ -82,6 +89,7 @@
     </div>
 </template>
 <script>
+    import OrderHeader from './../components/OrderHeader'
     import Modal from './../components/Modal'
     export default {
         name: 'orderConfirm',
@@ -99,7 +107,8 @@
             }
         },
         components: {
-            modal: Modal
+            Modal,
+            OrderHeader
         },
         mounted () {
             this.getAddressList()
