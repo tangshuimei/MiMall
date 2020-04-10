@@ -8,6 +8,7 @@ import {Message} from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import store from './store'
 import App from './App.vue'
+import './assets/scss/element-variables.scss'
 
 //这是mock的开关，接口开发完成，前后端联调上线就不需要了
 const mock = false; 
@@ -64,6 +65,7 @@ Vue.use(VueLazyLoad,{
 });
 Vue.prototype.$message = Message;
 Vue.config.productionTip = false //生产环境的提示
+
 
 new Vue({ 
   store,

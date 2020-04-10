@@ -12,7 +12,9 @@
                     {{item.orderNo}}
                 </li>
             </ul>
+            <el-button type="primary" :loading="loading" @click="loadMore">加载更多</el-button>
             <el-pagination
+                v-if="false"
                 background
                 layout="prev, pager, next"
                 :pageSize="pageSize"
@@ -25,7 +27,7 @@
     </div>
 </template>
 <script>
-    import {Pagination} from 'element-ui'
+    import {Pagination,Button} from 'element-ui'
     import OrderHeader from './../components/OrderHeader'
     import Loading from './../components/Loading'
     import NoData from './../components/NoData'
@@ -44,13 +46,15 @@
             OrderHeader,
             Loading,
             NoData,
-            [Pagination.name]: Pagination
+            [Pagination.name]: Pagination,
+            [Button.name]: Button
         },
         mounted () {
             this.getOrderList()
         },
         methods: {
             getOrderList(){
+                this.loading = true
                 this.axios.get('/orders',{
                     params: {
                         pageSize: this.pageSize,
@@ -58,7 +62,7 @@
                     }
                 }).then((res)=>{
                     this.loading = false
-                    this.list = res.list
+                    this.list = this.list.concat(res.list)
                     this.total = res.total
                 }).catch(()=>{
                     this.loading = false
@@ -66,6 +70,10 @@
             },
             changePage(pageNum){
                 this.pageNum = pageNum
+                this.getOrderList()
+            },
+            loadMore(){
+                this.pageNum++;
                 this.getOrderList()
             }
         }
