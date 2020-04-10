@@ -47,7 +47,7 @@
             Loading,
             NoData,
             [Pagination.name]: Pagination,
-            [Button.name]: Button,
+            [Button.name]: Button
         },
         mounted () {
             this.getOrderList()

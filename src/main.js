@@ -66,6 +66,7 @@ Vue.use(VueLazyLoad,{
 Vue.prototype.$message = Message;
 Vue.config.productionTip = false //生产环境的提示
 
+
 new Vue({ 
   store,
   router,
