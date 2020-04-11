@@ -6,83 +6,92 @@
             </template>
         </order-header>
         <div class="order-body">
-            <loading v-if="loading"></loading>
             <ul>
                 <li v-for="item in list" :key="item.id">
                     {{item.orderNo}}
                 </li>
+                
             </ul>
-            <el-button type="primary" :loading="loading" @click="loadMore">加载更多</el-button>
-            <el-pagination
-                v-if="false"
-                background
-                layout="prev, pager, next"
-                :pageSize="pageSize"
-                :total="total"
-                @current-change="changePage"
-                >
-            </el-pagination>
-            <no-data v-if="!loading && list.length == 0"></no-data>
+            <div class="scroll-more" 
+                v-show="showScrollMore"
+                v-infinite-scroll="scrollMore" 
+                infinite-scroll-disabled="busy" 
+                infinite-scroll-distance="210"
+                infinite-scroll-immediate-check="false"
+            >
+                
+                <img src="/imgs/loading-svg/loading.svg" alt="">
+            </div>
         </div>
     </div>
 </template>
 <script>
-    import {Pagination,Button} from 'element-ui'
     import OrderHeader from './../components/OrderHeader'
-    import Loading from './../components/Loading'
-    import NoData from './../components/NoData'
+    import InfiniteScroll from 'vue-infinite-scroll'
     export default {
         name: 'orderList',
         data(){
             return {
                 list: [],
-                loading: true,
-                pageSize: 2,
+                pageSize: 1,
                 pageNum: 1,
-                total: 0
+                busy: true, // 滚动加载是否触发
+                showScrollMore: false,
             }
         },
+        directives: {InfiniteScroll},
         components: {
             OrderHeader,
-            Loading,
-            NoData,
-            [Pagination.name]: Pagination,
-            [Button.name]: Button
+        },
+        created () {
         },
         mounted () {
-            this.getOrderList()
+            this.getList()
         },
         methods: {
-            getOrderList(){
-                this.loading = true
+            changePage(pageNum){
+                this.pageNum = pageNum
+                this.getOrderList()
+            },
+            scrollMore: function() {
+                this.busy = true
+                setTimeout(() => {
+                    this.pageNum++;
+                    this.getList()
+                }, 500);
+            },
+            // 专门给scrollMore使用
+            getList(){
+                this.busy = true
+                this.showScrollMore = true
                 this.axios.get('/orders',{
                     params: {
                         pageSize: this.pageSize,
                         pageNum: this.pageNum
                     }
                 }).then((res)=>{
-                    this.loading = false
                     this.list = this.list.concat(res.list)
-                    this.total = res.total
-                }).catch(()=>{
-                    this.loading = false
+                    if(res.hasNextPage){
+                        this.busy = false;
+                        this.showScrollMore = true
+                    }
+                    else{
+                        this.busy = true;
+                        this.showScrollMore = false
+                    }
                 })
             },
-            changePage(pageNum){
-                this.pageNum = pageNum
-                this.getOrderList()
-            },
-            loadMore(){
-                this.pageNum++;
-                this.getOrderList()
-            }
         }
     }
 </script>
 <style lang="scss">
     .page-order-list{
         li{
-            padding: 500px;
+            padding: 300px;
+        }
+        img{
+            width: 100px;
+            height: 100px;
         }
     }
 </style>
