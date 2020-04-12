@@ -28,6 +28,9 @@ module.exports = {
     // lintOnSave:true,
     // 压缩js，生成js.map文件，设置为false则会提高安全性，没有map可提高打包速度
     productionSourceMap: false,
-
+    // 删除所有的prefetch
+    chainWebpack: (config)=>{
+        config.plugins.delete('prefetch');
+    }
     
 }
